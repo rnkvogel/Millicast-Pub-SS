@@ -1,0 +1,268 @@
+body{
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+    }
+a{
+    color: #fff; 
+    }
+select {
+  width: 180px;
+}
+.top-left{
+
+
+}
+#userCntView {
+          position: absolute;
+          color: white;
+          right: 12px;
+          top: 12px;
+          z-index: 3;
+          background-color: black;
+          border-radius: 3px;
+          padding: 10px 15px;
+        }
+#userCntView #count {
+          margin: 0;
+          font-size: 13px;
+        }
+#publishBtn {
+        position: fixed;
+        position: top;
+        position: center;
+        background-color: #2ea00b;
+        color: #ffffff;
+        background-position: absolute;
+        padding: 15px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+#publishBtn:focus{
+background-color:red;
+  }
+
+#videoSrc{
+  position:left;
+  padding:5px;
+  width: 42px;
+ 
+    }
+#micMuteBtn {
+    
+        background-color: #2ea00b;
+        color: #ffffff;
+        background-position: absolute;
+        padding: 15px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+#micMuteBtn:focus{
+background-color:red;
+
+  }
+#viewerURL{
+position: absolute;
+top: 8px;
+right: 80%;
+padding-bottom: 5%;
+}
+#aspect{
+        background-color: #2ea00b;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+  #aspect{
+        background-color: #2ea00b;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+  }
+  #aspectNormal {
+        background-color: #2ea00b;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+  .slider {
+  color: red;
+    -webkit-appearance: none;
+     width: 4.2em;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 100vw;
+}
+
+/* Bottom left text */
+.bottom-left {
+    position: absolute;
+    bottom: 2px;
+    left: 43%;
+}
+/* Top left text iframe*/
+.top-left {
+position: fixed;
+top: 5%;
+left:30%;
+}
+
+/* Top right text */
+.top-right {
+position:fixed;
+top: 8px;
+right: 75%;
+}
+
+/* Bottom right text */
+.bottom-right {
+position: absolute;
+bottom: 8px;
+right: 55%;
+padding-bottom: 10%;
+}
+
+/* Centered text */
+.centered {
+   position: absolute;
+   margin-left; 40%;
+    top: 8px;
+    left: 16px;  
+}
+/* Select text */
+.selectSS {
+
+position: absolute;
+right: 125%;
+bottom: 7%;
+
+}
+.selectSS-content {
+  display: none;
+  position: absolute;
+
+}
+.selectSS:hover .select1-content {
+  display: block;
+  right: 5%;
+  bottom: 100%; 
+  width: 240px;
+}
+.select1 {
+
+position: absolute;
+right: 105%;
+bottom: 7%;
+
+}
+.select1-content {
+  display: none;
+  position: absolute;
+
+}
+.select1:hover .select1-content {
+  display: block;
+  right: 5%;
+  bottom: 100%; 
+  width: 240px;
+}
+
+.select2 {
+position: absolute;
+left:105%;
+bottom: 7%;
+}
+.select2-content {
+  display: none;
+  position: absolute;
+
+}
+.select2:hover .select2-content {
+  display: block;
+  right: 5%;
+  bottom: 100%; 
+  width: 240px;
+}
+.select3 {
+position: absolute;
+left:125%;
+bottom: 7%;
+}
+.select3-content {
+  display: none;
+  position: absolute;
+
+}
+.select3:hover .select3-content {
+  display: block;
+  right: 5%;
+  bottom: 100%; 
+  width: 220px;
+}
+.select4 {
+position: absolute;
+left:143%;
+bottom: 7%;
+}
+.select4-content {
+  display: none;
+  position: absolute;
+
+}
+.select4:hover .select4-content {
+  display: block;
+  position: center;
+  text-align: center;
+  bottom: 100%;
+  right: 5%; 
+  width: 220px;
+}
+#iframe{
+border: -1px;
+height: 20%;
+width: 100%;
+
+}
+table, th, td {
+ color: #edf0f2; 
+}
+
+#localVideo{
+width: 100%;
+height: 100vh;
+}
+img {
+  position:left;
+  padding:5px;
+
+  width: 42px;
+}
