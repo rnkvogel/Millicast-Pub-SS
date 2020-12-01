@@ -18,10 +18,10 @@
   let streamName = params.get('id') + "SS";
   let accountId = 'LZsuF8';
 
-  let stream1 = "https://robertdev.influxis.com/millicast/2020b/screen/?id=" + streamName;
-  let stream2 = "https://robertdev.influxis.com/millicast/2020b/?id=" + streamName ;
-  let player1 = "https://robertdev.influxis.com/millicast/2020b/player/?accountId=" + accountId + "&streamName=" + streamName ;   
-  let player2 = "https://robertdev.influxis.com/millicast/2020b/player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
+  let stream1 = "https://rnkvogel.github.io/Millicast2020/screen/?id=" + streamName;
+  let stream2 = "https://rnkvogel.github.io/Millicast2020/?id=" + streamName ;
+  let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
+  let player2 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
   
 function stopScreen() {
   //screenshare
