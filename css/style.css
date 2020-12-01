@@ -1,0 +1,46 @@
+html, body, div, iframe {
+ margin:0;
+ padding:0; 
+
+  }
+ iframe { display:block; width:100%;
+  border:none;
+  }
+#content{
+height: 100%;
+width: 100%;	
+}
+#player{
+	text-align: top;
+	float: center;
+    height: 100%
+	padding-bottom: 0px;	
+}
+#nav2{
+float:left;
+}
+#button1{
+	text-align: top;
+	float: left;
+	padding-right: 0px;
+
+}
+#button2{
+	text-align: top;
+	float: left;
+    padding-right: 0px;
+}
+#button3{
+	text-align: top;
+	float: left;
+	padding-right: 0px;
+
+}
+#button4{
+	text-align: top;
+	float: left;
+
+
+
+
+

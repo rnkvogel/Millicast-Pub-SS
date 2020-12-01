@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../css/viewer.css" rel="stylesheet">
+<link href="../css/offline.css" rel="stylesheet">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="../js/viewerSS.js"></script>
+<!-- Standard shim for WebRTC browser compatibility -->
+<script src="../js/adapter-latest.js"></script>
+<script src="../js/offline.js"></script>
+<script>
+    $(function(){
+         var 
+            $online = $('.online'),
+            $offline = $('.offline');
+
+        Offline.on('confirmed-down', function () {
+            $online.fadeOut(function () {
+                $offline.fadeIn();
+            });
+        });
+
+        Offline.on('confirmed-up', function () {
+        	//internet has been down for a long time.
+        
+        	connect();
+             $offline.fadeOut(function () {
+                $online.fadeIn();
+
+            });
+        });
+     });
+</script>
+<body><!-- autoplay = muted autoplay-->
+<div class="wrapper">
+<video id="player" disablePictureInPicture controlsList="nodownload" class="main" muted autoplay playsinline images="images/starting.png" ></video>
+<div id="msgView">
+<h3 id="msgOverlay">One Moment...</h3>
+</div>
+</div>
+</body>
+</html>
