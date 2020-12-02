@@ -448,7 +448,7 @@ function getMedia() {
         }
       }
      let constraints = {audio: a,
-       video: {
+       video: 
           true
           //width:  { min: 640, max: 1920, ideal: 1280 },
           //height: { min: 480, max: 1080, ideal: 720 },
@@ -459,10 +459,7 @@ function getMedia() {
            // { aspectRatio: 16/9 },
             //{ aspectRatio:  4/3 },
         //  ]
-        }
-
-
-      };
+         };
        navigator.mediaDevices.getUserMedia(constraints)
         .then(str => {
           resolve(str);
