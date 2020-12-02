@@ -452,7 +452,7 @@ function getMedia() {
           true,
           //width:  { min: 640, max: 1920, ideal: 1280 },
           //height: { min: 480, max: 1080, ideal: 720 },
-          frameRate: { min: 10, max: 60, ideal: 30 },
+         // frameRate: { min: 10, max: 60, ideal: 30 },
           advanced: [
             // additional constraints go here, tried in order until something succeeds
             // can attempt high level exact constraints, slowly falling back to lower ones
