@@ -446,7 +446,7 @@ function getMedia() {
           echoCancellation: false
         }
       }
-     let constraints = {audio: true,
+     let constraints = {audio: false,
        video: true
                         //{
          // width:  { min: 640, max: 1920, ideal: 1280 },
