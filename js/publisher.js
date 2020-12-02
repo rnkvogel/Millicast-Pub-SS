@@ -13,7 +13,8 @@
   // (Millicast API Info) hard code it here, or enter it at runtime on the field.
   let params = new URLSearchParams(document.location.search.substring(1));
   let token = '35f9f7413eccf0a1c4cf1ee23b05289abbb4716b5833e5bdc2c0df012f2826fa';
-  let streamName = params.get('id');
+ // let streamName = params.get('id');// can be taken from URL
+  let streamName = Math.random().toString(36).substring(7);  //name can be generated on each load
   let screenName = streamName + "SS";
   let accountId = 'LZsuF8';
 
