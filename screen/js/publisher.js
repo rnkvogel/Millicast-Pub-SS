@@ -437,25 +437,11 @@ try {
 
 function getMedia() {
   return new Promise((resolve, reject) => {
- //getusermedia constraints
-      let a = true;
-      //handle stereo request.
-      if(stereo && codec == 'h264' || stereo && codec == 'vp8'){
-        a = {
-          channelCount: {min:2},
-          echoCancellation: false
-        }
-      }
-     let constraints = {audio: false,
-       video: true
-                        //{
-         // width:  { min: 640, max: 1920, ideal: 1280 },
-         // height: { min: 480, max: 1080, ideal: 720 },
-         // frameRate: { min: 10, max: 60, ideal: 30 },
-       // }
-
-
-      };
+ //getMediaDisplay constraints
+const gdmOptions = {
+  video: true,
+  audio: false
+}  
        navigator.mediaDevices.getDisplayMedia()
         .then(str => {
           resolve(str);
