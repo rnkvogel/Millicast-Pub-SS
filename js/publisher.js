@@ -440,7 +440,9 @@ try {
 function getMedia() {
   return new Promise((resolve, reject) => {
  //getusermedia constraints
-//getusermedia constraints
+   let constraints =  { audio: true, video: true };
+//getusermedia constraints you adjust building
+    /*
       let a = true;
       //handle stereo request.
       if(stereo && codec == 'h264' || stereo && codec == 'vp8'){
@@ -484,6 +486,7 @@ function getMedia() {
        minFrameRate: 5,
        maxFrameRate: 60,
       };
+      */
        navigator.mediaDevices.getUserMedia(constraints)
         .then(str => {
           resolve(str);
