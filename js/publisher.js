@@ -440,27 +440,50 @@ try {
 function getMedia() {
   return new Promise((resolve, reject) => {
  //getusermedia constraints
+//getusermedia constraints
       let a = true;
       //handle stereo request.
       if(stereo && codec == 'h264' || stereo && codec == 'vp8'){
         a = {
           channelCount: {min:2},
-          echoCancellation: false
+          echoCancellation: false, // disabling audio processing
+          googAutoGainControl: true,
+          googNoiseSuppression: true,
+          googHighpassFilter: true,
         }
       }
-     let constraints = {audio: a,
-       video: {
-          width:  { min: 640, max: 1920, ideal: 1280 },
-          height: { min: 480, max: 1080, ideal: 720 },
-          frameRate: { min: 10, max: 60, ideal: 30 },
-          advanced: [
-            // additional constraints go here, tried in order until something succeeds
-            // can attempt high level exact constraints, slowly falling back to lower ones
-            { aspectRatio: 16/9 },
-            //{ aspectRatio:  4/3 },
-          ]
-        }
-};
+     const aspect_wide = 1.77;
+     const aspect_norm = 1.4;
+
+     let aspect = aspect_wide;
+     //alert(aspect);
+     let localVideo = null; 
+   
+     localVideo = document.getElementById('localVideo');
+
+     let vgaConstraints = {
+     video: {
+     mandatory: {
+     maxWidth: "100vw",
+     maxHeight: "auto"
+     }
+     }
+     };
+   let constraints =
+    {
+    audio: a,  
+    video: true,
+    video: {
+    mandatory: {
+    minAspectRatio: aspect }
+        },
+       minWidth: 200,
+       maxWidth: 1920,
+       minHeight: 100,
+       maxHeight: 1080,
+       minFrameRate: 5,
+       maxFrameRate: 60,
+      };
        navigator.mediaDevices.getUserMedia(constraints)
         .then(str => {
           resolve(str);
