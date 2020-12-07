@@ -1,5 +1,5 @@
 body {
-    background: #e2e1e0;
+    background: #000000;
     text-align: center;
     margin: 0px;
     padding: 0px;
@@ -9,14 +9,13 @@ body {
     font-family: Helvetica, Verdana, Arial, sans-serif;
     }
    video {
-   width: 100%;
-   height: auto;
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   z-index: -1;
+    object-fit: contain;
+    position:absolute;
+    z-index:-1;
+    top:0;
+    left:0;
+    width:100%; 
+    height:100vh;
   
    }
 
