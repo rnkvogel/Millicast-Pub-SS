@@ -436,13 +436,24 @@ try {
   }
 
 function getMedia() {
-  return new Promise((resolve, reject) => {
- //getMediaDisplay constraints
-const gdmOptions = {
-  video: true,
+let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+//let isEdge = /Edge/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+let constraints =  { 
+    video: {
+    mediaSource: "screen"
+  },
   audio: false
-}  
-       navigator.mediaDevices.getDisplayMedia()
+};  
+let screenMedia = navigator.mediaDevices.getUserMedia(constraints);
+
+if (isChrome) { 
+screenMedia =  navigator.mediaDevices.getDisplayMedia(constraints);
+} 
+
+return new Promise((resolve, reject) => {
+ //getmedia constraints needs to chec
+ 
+ screenMedia
         .then(str => {
           resolve(str);
 
