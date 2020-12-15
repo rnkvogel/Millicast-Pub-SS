@@ -12,6 +12,8 @@ Includes
 
 5.Bitrate change
 
+6.Viewer count on publisher.
+
 
 Requirements.
 Millicast.com account.
