@@ -14,12 +14,9 @@
 
   // (Millicast API Info) hard code it here, or enter it at runtime on the field.
   let params = new URLSearchParams(document.location.search.substring(1));
-  let token = '35f9f7413eccf0a1c4cf1ee23b05289abbb4716b5833e5bdc2c0df012f2826fa';
+  let token = params.get('tn');
   let streamName = params.get('id') + "SS";
-  let accountId = 'LZsuF8';
-
-  let stream1 = "https://rnkvogel.github.io/Millicast2020/screen/?id=" + streamName;
-  let stream2 = "https://rnkvogel.github.io/Millicast2020/?id=" + streamName ;
+  let accountId = params.get('at');
   let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
   
