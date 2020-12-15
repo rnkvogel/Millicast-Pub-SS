@@ -5,15 +5,16 @@
 <meta charset="utf-8">
  <meta name="viewport" content="width=device-width initial-scale=1, shrink-to-fit=no, maximum-scale=10.0,user-scalable=1">
   <link rel="stylesheet" href="css/publisher.css">
-  <script src="https://rnkvogel.github.io/Millicast2020/js/publisher.js"></script>
-  <script src="https://rnkvogel.github.io/Millicast2020/js/adapter-latest.js"></script>
+  <script src="js/publisher.js"></script>
+  <script src="js/adapter-latest.js"></script>
 
 </head>
 <body>
   <div class="container">
   <div id="userCntView"><p id="count">viewing: 00</p></div>
 
-   <video id="localVideo" src=""  autoplay muted playsinline ></video>
+  <video id="localVideo" src=""  autoplay muted playsinline ></video>
+
   <div class="bottom-left">
   <div class="selectSS"> 
   <image src="images/screenshare.png" onclick="startScreen()" value="Screen Capture"/>
@@ -37,24 +38,22 @@
   <div class="selectBit">
   <image src="images/cog.png"/>
   <select name="videoBitrate" class="selectBit-content" onchange="getBitrate()" id="bitrate" >
-    <option value="0" id="bitrateText">Unlimited</option>
+    <option value="0" id="bitrateText">Bitrate Open</option>
     <option value="1500" id="bitrateText">1.5 MBPS</option>
     <option value="1000" id="bitrateText">1.0 MPBS</option>
     <option value="500" id="bitrateText">500 BPS</option>
   </select>
   <div>
 
-  <div id="form" class="">
-        <input id="tokenTxt" class="base-input" type="hidden" value="" placeholder="Token" />
-        <input id="streamTxt" class="base-input ml-10 mr-10" type="hidden" value="" placeholder="Stream Name"/>
-        <input id="viewTxt" class="base-input" type="hidden" value="" placeholder="Account Id"/>
-    
-
-    </div>
+  <div id="form" class="account-data">
+        </><input id="tokenTxt" class="base-input" type="text" value="" placeholder="Token" />
+        <input id="viewTxt" class="base-input" type="text" value="" placeholder="Account Id"/>
+       <input id="streamTxt" class="base-input ml-10 mr-10" type="hidden" value="" placeholder="Stream Name"/>
+       </div>
     <div class="ml-10 mt-10">
     <div class="ml-10 mt-10">
 </body>
-  <script src="https://rnkvogel.github.io/Millicast2020/js/usercount.js"></script>
+  <script src="js/usercount.js"></script>
 </html>
 
 
