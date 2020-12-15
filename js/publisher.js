@@ -12,19 +12,19 @@
 
   // (Millicast API Info) hard code it here, or enter it at runtime on the field.
   let params = new URLSearchParams(document.location.search.substring(1));
-  let token = '35f9f7413eccf0a1c4cf1ee23b05289abbb4716b5833e5bdc2c0df012f2826fa';
+  let token = params.get('tokenTxt');
  // let streamName = params.get('id');// can be taken from URL
   let streamName = Math.random().toString(36).substring(7);  //name can be generated on each load
   let screenName = streamName + "SS";
-  let accountId = 'LZsuF8';
-
-  let stream1 = "https://rnkvogel.github.io/Millicast2020/screen/?id=" + streamName;
-  let stream2 = "https://rnkvogel.github.io/Millicast2020//?id=" + streamName ;
+  let accountId = params.get('viewTxt');
   let player1 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020//player/screenshare.html?accountId=" + accountId + "&streamName=" + streamName + "SS";
   
 function startScreen() {
   //screenshare
+   let tokenVal=document.getElementById("tokenTxt").value;
+   let accountVal = document.getElementById("viewTxt").value;
+   let stream1 = "https://robertdev.influxis.com/millicast/2020b/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal;
    window.open(stream1 , "MsgWindow", "width=700,height=600, left:0");
     //window.open(stream1 , "_parent", "width=900,height=600, left:0;");  
     //document.getElementById('screenshare').src = player2;
@@ -59,12 +59,6 @@ function stopScreen(){
     {form: 'streamTxt', param: 'streamName'},
     {form: 'viewTxt', param: 'accountId'}
   ];
-//Start Screen Share
-
-
-//Switch the videos
-
-
 //start stop publishing
   function startBroadcast() {
     //if missing params, assume the form has them.
