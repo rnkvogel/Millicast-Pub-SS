@@ -1,4 +1,4 @@
-# Millicast Publisher wiht ScreenShare
+# Millicast Publisher and ScreenShare
 includes
 Camera change while broadcasting.
 Speaker output option.
