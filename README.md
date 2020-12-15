@@ -3,9 +3,13 @@ Includes
 
 
 1.Camera change while broadcasting.
+
 2.Speaker output option.
+
 3.SceenShare
+
 4.Mic Mute
+
 5.Bitrate change
 
 
