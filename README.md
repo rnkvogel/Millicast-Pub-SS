@@ -23,6 +23,8 @@ Create a stream name making sure you select *anyname
 Select the Millciast.com API tab for the stream label and token created.
 You can quickly test your token here.
 
+DEMO
+
 https://rnkvogel.github.io/Millicast2020/
 
 Enter your token and account id in the text fields on top..
