@@ -274,7 +274,7 @@ function stopCapture(evt) {
 //Start SCreen Share
   function screenStart(){
     let btn = document.getElementById('screenSource');
-   alert("hello");
+  // alert("hello");
 
 }
 
