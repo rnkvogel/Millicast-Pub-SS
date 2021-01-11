@@ -37,10 +37,13 @@
 
 
 
-  //let iframe =document.createElement('iframe');
-  //iframe.setAttribute('src', player2);
-  //iframe.setAttribute('id', 'player2');
-  //document.body.appendChild(iframe);
+  function toggleMute(){
+  player.muted = !player.muted;
+  if (!player.muted){
+  audioBtn.style.visibility = 'hidden';
+  //player.play(); 
+  }
+}
 
 function connect() {
     reconn = false;
