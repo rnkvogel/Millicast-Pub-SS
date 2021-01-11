@@ -14,7 +14,7 @@ Includes
 
 6.Viewer count on publisher.
 
-7. Player unmute button starting image.
+7.Player unmute button starting image.
 
 
 Requirements.
