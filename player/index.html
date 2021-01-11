@@ -39,13 +39,16 @@
 </script>
 <body>
 <div class="wrapper">
-<video id="player"  autoplay muted playsinline></video>
+<video id="player" disablePictureInPicture controlsList="nodownload" autoplay muted playsinline controls poster="images/starting.png" ></video>
+</div>
+
+<div id="userCntView"><p id="count">viewing: 00</p></div>
+
 <div id="msgView">
-<h3 id="msgOverlay">One Moment...</h3>
+  <h3 id="msgOverlay">One Moment...</h3>
 </div>
-</div>
-</div>
-<button type="button" class="screen" onclick="startScreen()">Show Screen</button>
+<button id="audioBtn" class="btn-audio"  onClick="toggleMute()" type="button"><br></button>
+<button type="button" class="screen" onclick="startScreen()" value="Show Screen">Show Screen</button>
 </body>
 <script src="../js/usercount.js"></script>
 </html>
