@@ -28,16 +28,16 @@ select {
           font-size: 13px;
         }
 #publishBtn {
-       
-        background-color: #2ea00b;
-        color: #ffffff;
-        background-position: absolute;
-        padding: 15px;
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        margin:10px
-    }
+background-color: #2ea00b;
+opacity: 80%;
+color: #ffffff;
+background-position: absolute;
+padding: 12px;
+border-radius: 100%;
+-moz-border-radius: 100%;
+-webkit-border-radius: 100%;
+margin:10px
+}
 #publishBtn:focus{
 background-color:red;
   }
@@ -45,14 +45,15 @@ background-color:red;
 
 #micMuteBtn {
     
-        background-color: #2ea00b;
-        color: #ffffff;
-        background-position: absolute;
-        padding: 15px;
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        margin:10px
+background-color: #2ea00b;
+opacity: 80%;
+color: #ffffff;
+background-position: absolute;
+padding: 12px;
+border-radius: 100%;
+-moz-border-radius: 100%;
+-webkit-border-radius: 100%;
+ margin:10px
     }
 #micMuteBtn:focus{
 background-color:red;
@@ -74,7 +75,7 @@ padding-bottom: 5%;
         margin:10px
     }
 
-  #aspectNormal {
+#aspectNormal {
         background-color: #2ea00b;
         color: #ffffff;
         padding: 10px;
@@ -145,9 +146,9 @@ padding-bottom: 10%;
 }
 /* Select text */
 .selectSS {
-
+opacity: 80%;
 position: absolute;
-right: 125%;
+right: 132%;
 bottom: 7%;
 
 }
@@ -158,14 +159,16 @@ bottom: 7%;
 }
 .selectSS:hover .select1-content {
   display: block;
+  opacity: 100%;
   right: 5%;
   bottom: 100%; 
   width: 240px;
 }
-.select1 {
 
+.select1 {
 position: absolute;
-right: 105%;
+opacity: 80%;
+right: 102%;
 bottom: 7%;
 
 }
@@ -181,12 +184,10 @@ bottom: 7%;
   width: 240px;
 }
 
-#videoSource{
- 
-}
 .select2 {
 position: absolute;
-left:105%;
+opacity: 80%;
+left:100%;
 bottom: 7%;
 }
 .select2-content {
@@ -196,13 +197,14 @@ bottom: 7%;
 }
 .select2:hover .select2-content {
   display: block;
-  right: 5%;
+   right: 5%;
   bottom: 100%; 
   width: 240px;
 }
 .select3 {
 position: absolute;
-left:125%;
+opacity: 80%;
+left:128%;
 bottom: 7%;
 }
 .select3-content {
@@ -218,7 +220,8 @@ bottom: 7%;
 }
 .select4 {
 position: absolute;
-left:143%;
+opacity: 80%;
+left:155%;
 bottom: 7%;
 }
 .select4-content {
@@ -227,12 +230,13 @@ bottom: 7%;
 
 }
 .select4:hover .select4-content {
+  position: absolute;
+  z-index: 1;
   display: block;
-  position: center;
-  text-align: center;
-  bottom: 100%;
-  right: 5%; 
-  width: 220px;
+  cursor: pointer;
+  bottom: 50%;
+  left: 5%;
+  width: 100px;
 }
 .selectBit {
 position: absolute;  
@@ -265,15 +269,141 @@ table, th, td {
 position: center;  
 width: 100vw;
 height: 100vh;
+top:0;
+right:0;
+left:0;
+bottom:0;
 }
 img {
-  position:left;
-  padding:5px;
+position:left;
+padding:5px;
 width: 42px;
 }
 .account-data{
    display: block;
    position: fixed;
    top:0;
-   right: 40%;
+   right:40%;
 }
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background: url("../images/cog.png") no-repeat;
+  background-size:100%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 3%;
+  height: 8%;
+
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 1px solid #f1f1f1;
+  z-index: 9;
+
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 200px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #000000;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=bitrate]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+       background-color: red;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+       background-color: red;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+#cancel{
+       background-color: red;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+}
+#aspect {
+        background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+#bitrate {
+        background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+
+#codec {
+        background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+  }
+  #framerate {
+        background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+  }
