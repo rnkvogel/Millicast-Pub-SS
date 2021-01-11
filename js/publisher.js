@@ -17,14 +17,14 @@
   let streamName = Math.random().toString(36).substring(7);  //name can be generated on each load
   let screenName = streamName + "SS";
   let accountId = params.get('viewTxt');
-  let player1 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName ;   
-  let player2 = "https://rnkvogel.github.io/Millicast2020//player/screenshare.html?accountId=" + accountId + "&streamName=" + streamName + "SS";
+  let player1 = "hhttps://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
+  let player2 = "https://rnkvogel.github.io/Millicast2020/player/screenshare.html?accountId=" + accountId + "&streamName=" + streamName + "SS";
   
 function startScreen() {
   //screenshare
    let tokenVal=document.getElementById("tokenTxt").value;
    let accountVal = document.getElementById("viewTxt").value;
-   let stream1 = "https://https://rnkvogel.github.io/millicast/2020/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal;
+   let stream1 = "https://rnkvogel.github.io/Millicast2020/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal;
    window.open(stream1 , "MsgWindow", "width=700,height=600, left:0");
     //window.open(stream1 , "_parent", "width=900,height=600, left:0;");  
     //document.getElementById('screenshare').src = player2;
