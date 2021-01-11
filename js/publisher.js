@@ -24,7 +24,7 @@ function startScreen() {
   //screenshare
    let tokenVal=document.getElementById("tokenTxt").value;
    let accountVal = document.getElementById("viewTxt").value;
-   let stream1 = "https://robertdev.influxis.com/millicast/2020b/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal;
+   let stream1 = "https://https://rnkvogel.github.io/millicast/2020/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal;
    window.open(stream1 , "MsgWindow", "width=700,height=600, left:0");
     //window.open(stream1 , "_parent", "width=900,height=600, left:0;");  
     //document.getElementById('screenshare').src = player2;
@@ -132,17 +132,46 @@ function stopScreen(){
      btn.style.backgroundColor = "green";   
     }
   }
- //set bit rate
+ //set COG features
+function openForm() {
+  document.getElementById("cogForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("cogForm").style.display = "none";
+}
+   //set bit rate
   let videoBitrate = 0;
   function getBitrate() {
   videoBitrate = document.getElementById("bitrate").value;
-  alert("Your Video Bitrate "  + videoBitrate + "BPS");
+  alert("Your Video Bitrate "  + videoBitrate + "  BPS");
 
   };
- 
-  function connect() {
+  //set frame rate
+  let videoFps = 24;
+  function getFps() {
+  videoFps = document.getElementById("framerate").value;
+  alert("Your Video Framerate"  + videoFps + "FPS");
 
-    return new Promise( (resolve, reject) => {
+  };
+  //set codec
+  let videoCodec = "h264";
+  function getCodec() {
+  videoCodec = document.getElementById("codec").value;
+  alert("Your Video Codec "  + videoCodec);
+
+  };
+
+  //set Aspect
+  let aspectRatio = "1.7777777778";
+  function getAspect() {
+  aspectRatio = document.getElementById("aspect").value;
+  alert("Your Aspect"  + aspectRatio );
+  };
+  
+
+function connect() {
+return new Promise( (resolve, reject) => {
       if (token && !url || token && !jwt) {
         console.log('connect to API - url:', url)
         return updateMillicastAuth()
@@ -200,7 +229,7 @@ function stopScreen(){
                 let data = {
                   name:  streamName,
                   sdp:   desc.sdp ,
-                  codec: codec//'h264'
+                  codec: videoCodec//'h264'
 
                 }
                 //create payload
@@ -282,13 +311,13 @@ function stopScreen(){
   function onBroadcasting(){
     let btn = document.getElementById('publishBtn');
     console.log('broadcasting:', isBroadcasting);
-    btn.innerHTML = isBroadcasting ? 'STOP PUBLISHING' : 'START PUBLISH';
-    if (btn.value ='STOP PUBLISHING'){
+    btn.innerHTML = isBroadcasting ? 'STOP LIVE' : ' GO LIVE ';
+    if (btn.value ='STOP LIVE'){
     btn.style.backgroundColor = "red"; 
     }  
     if(isBroadcasting == false){
     btn.style.backgroundColor = "green"; 
-    btn.value = 'START PUBLISHING';
+    btn.value = ' GO LIVE ';
 
     }
      if(isBroadcasting) {
@@ -434,9 +463,6 @@ try {
 function getMedia() {
   return new Promise((resolve, reject) => {
  //getusermedia constraints
-   let constraints =  { audio: true, video: true };
-//getusermedia constraints you adjust building
-    /*
       let a = true;
       //handle stereo request.
       if(stereo && codec == 'h264' || stereo && codec == 'vp8'){
@@ -448,39 +474,28 @@ function getMedia() {
           googHighpassFilter: true,
         }
       }
-     const aspect_wide = 1.77;
-     const aspect_norm = 1.4;
 
-     let aspect = aspect_wide;
+    let aspect = aspectRatio;
      //alert(aspect);
-     let localVideo = null; 
+     //let localVideo = null; 
    
-     localVideo = document.getElementById('localVideo');
+    localVideo = document.getElementById('localVideo');
 
-     let vgaConstraints = {
-     video: {
-     mandatory: {
-     maxWidth: "100vw",
-     maxHeight: "auto"
-     }
-     }
-     };
-   let constraints =
+    let constraints =
     {
     audio: a,  
     video: true,
     video: {
     mandatory: {
     minAspectRatio: aspect }
-        },
-       minWidth: 200,
-       maxWidth: 1920,
-       minHeight: 100,
-       maxHeight: 1080,
-       minFrameRate: 5,
-       maxFrameRate: 60,
-      };
-      */
+    },
+    minWidth: 640,
+    maxWidth: 1920,
+    minHeight: 360,
+    mHeight: 1080,
+    minFrameRate: 10,
+    maxFrameRate: videoFps,
+    };
        navigator.mediaDevices.getUserMedia(constraints)
         .then(str => {
           resolve(str);
@@ -772,5 +787,6 @@ if (document.attachEvent ? document.readyState === "complete" : document.readySt
   } else {
     document.addEventListener('DOMContentLoaded', ready);
   }
+
 
 
