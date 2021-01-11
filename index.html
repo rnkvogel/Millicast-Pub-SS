@@ -4,18 +4,20 @@
 <title>Millicast Realtime Broadcaster</title>
 <meta charset="utf-8">
  <meta name="viewport" content="width=device-width initial-scale=1, shrink-to-fit=no, maximum-scale=10.0,user-scalable=1">
-  <link rel="stylesheet" href="css/publisher.css">
-  <script src="js/publisher.js"></script>
-  <script src="js/adapter-latest.js"></script>
+<link rel="stylesheet" href="css/publisher.css">
+<script src="js/publisher.js"></script>
+<script src="js/adapter-latest.js"></script>
 
 </head>
 <body>
   <div class="container">
+
   <div id="userCntView"><p id="count">viewing: 00</p></div>
 
   <video id="localVideo" src=""  autoplay muted playsinline ></video>
 
   <div class="bottom-left">
+
   <div class="selectSS"> 
   <image src="images/screenshare.png" onclick="startScreen()" value="Screen Capture"/>
   </div>
@@ -23,27 +25,57 @@
   <image src="images/Cam.png"/>
     <select id="videoSource" class="select1-content"></select>
   </div>
-  <input type="button" id="publishBtn" class="inline-b"  value="START PUBLISHING" />
-  <input type="button" id="micMuteBtn" class="inline-b" onclick="toggleMic()"  value="MUTE MIC" />
+  <input type="button" id="publishBtn" class="inline-b"  value=" GO LIVE " />
+  <input type="button" id="micMuteBtn" class="inline-b" onclick="toggleMic()"  value="MUTE" />
   <div class="select2">
-  <image src="images/Mic3.png"/><select id="audioSource"  class="select2-content"></select>
+  <image src="images/mic.png"/><select id="audioSource"  class="select2-content"></select>
     </div>
-    <div class="select3">
+  <div class="select3">
    <image src="images/Speaker.png"/><select id="audioOutput"  class="select3-content"></select>
   </div>
-    <div class="select4">
-   <image src="images/player.png"/><a id="viewerUrl" href="" target="_blank" class="select4-content"></a>
+  <div class="select4">
+  <image src="images/player.png"/>
+  <a id="viewerUrl" href="" target="_blank" class="select4-content"  ></a>
   </div> 
-  </div>
-  <div class="selectBit">
-  <image src="images/cog.png"/>
-  <select name="videoBitrate" class="selectBit-content" onchange="getBitrate()" id="bitrate" >
-    <option value="0" id="bitrateText">Bitrate Open</option>
+</div>  
+<input type="button" class="open-button" onclick="openForm()">
+</input>
+<div class="form-popup" id="cogForm"> 
+<form action="" class="form-container" > 
+<label for="videoBitrate"><b>Video Bitrate</b></label>
+  <select name="videoBitrate" class="selectBitrate-content" onchange="getBitrate()" id="bitrate" >
+    <option value="0" id="bitrateText">Bitrate Unlimited</option>
     <option value="1500" id="bitrateText">1.5 MBPS</option>
     <option value="1000" id="bitrateText">1.0 MPBS</option>
     <option value="500" id="bitrateText">500 BPS</option>
   </select>
-  <div>
+
+<label for="Frame Rate"><b>Video FPS</b></label>
+  <select name="videoFPS" class="selectFPS-content" onchange="getFps()" id="framerate" >
+    <option value="24" id="fpsText">24 fps</option>
+    <option value="20" id="fpsText">15 fps</option>
+    <option value="30" id="bitrateText">30 fps</option>
+    <option value="60" id="bitrateText">60 fps</option>
+  </select> 
+
+<label for="codec"><b>Codec</b></label>
+  <select name="videoCodec" class="selectCodec-content" onchange="getCodec()" id="codec" >
+    <option value="h264" id="codecText">H264</option>
+    <option value="vp8" id="codecText">VP8</option>
+    <option value="vp9" id="codecText">VP9</option>
+ </select>
+
+ <label for="Aspect Ratio"><b>Aspect Ratio</b></label>
+  <select name="aspectRatio" class="selectAspect-content" onchange="getAspect()" id="aspect" >
+    <option value="1.7777777778" id="aspectText">16:9</option>
+    <option value="1.4" id="aspectText">4:3</option>
+ </select>
+  
+    <!-- <button type="submit" class="btn">Save</button>  -->
+    <button type="button" class="btn cancel" onclick="closeForm()" id="cancel">Close</button>
+  </form>
+
+</div>   
 
   <div id="form" class="account-data">
         </><input id="tokenTxt" class="base-input" type="text" value="" placeholder="Token" />
