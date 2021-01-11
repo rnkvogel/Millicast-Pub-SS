@@ -10,9 +10,11 @@ Includes
 
 4.Mic Mute
 
-5.Bitrate change
+5.Cog for change bitrate, FPS, codec and aspect
 
 6.Viewer count on publisher.
+
+7. Player unmute button starting image.
 
 
 Requirements.
@@ -31,7 +33,7 @@ Enter your token and account id in the text fields on top..
 You will need to update the JS files URL
 REPLACE to Your Domain:  https://rnkvogel.github.io/Millicast2020/ 
 
-TODO:
+TO DO:
 Will be updating build to include.
 Constraint options.
 Fix screen share view options.
