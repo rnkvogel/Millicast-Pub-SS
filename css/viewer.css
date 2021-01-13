@@ -1,9 +1,17 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
 body {
-    background: #000000;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
-    }
+  background-color: #000000;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
    body, html, button, input, select, textarea {
     font-family: Helvetica, Verdana, Arial, sans-serif;
     }
@@ -15,7 +23,7 @@ body {
    left: 0;
    right: 0;
    bottom: 0;
-   z-index: -1;
+   object-fit: cover;
    }
   #wrapper {
   position: absolute;
