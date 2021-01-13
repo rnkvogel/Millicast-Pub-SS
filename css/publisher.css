@@ -131,7 +131,7 @@ padding-bottom: 5%;
 
 /* Bottom left text */
 .bottom-left {
-    position: absolute;
+    position: fixed;
     bottom: 2px;
     left: 43%;
 }
