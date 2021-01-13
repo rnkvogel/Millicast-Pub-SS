@@ -476,10 +476,14 @@ function getMedia() {
       }
 
     let aspect = aspectRatio;
-     //alert(aspect);
-     //let localVideo = null; 
-   
-    localVideo = document.getElementById('localVideo');
+     let vgaConstraints = {
+     video: {
+     mandatory: {
+     maxWidth: "100%",
+     maxHeight: "100%"
+     }
+     }
+     };
 
     let constraints =
     {
