@@ -1,10 +1,8 @@
 body{
-  background-color: #000000;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  width: 100vw;
+background-color: #000000;
+margin:0px;
+padding: 0px;
+overflow: hidden;
     }
 a{
     color: #fff; 
@@ -266,13 +264,10 @@ table, th, td {
 }
 
 #localVideo{
-position: center;  
 width: 100vw;
 height: 100vh;
-top:0;
-right:0;
-left:0;
-bottom:0;
+left: 0;
+right: 0;
 }
 img {
 position:left;
