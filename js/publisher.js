@@ -162,11 +162,26 @@ function closeForm() {
 
   };
 
-  //set Aspect
-  let aspectRatio = "1.7777777778";
+ //set Aspect
+  let aspectRatio = "1.7777";
+  
   function getAspect() {
   aspectRatio = document.getElementById("aspect").value;
-  alert("Your Aspect"  + aspectRatio );
+  alert("Your Aspect "  + aspectRatio );
+  selObj = document.getElementById('localVideo');
+  //selObj.value = "cover" ? 'contain' : 'cover';
+
+    if (aspectRatio.value = "1.7777"){
+    selObj.style.objectFit = "cover"; 
+    aspectRatio.value= '1.7';
+
+    }  
+    if(aspectRatio.value ='1.4'){
+    selObj.style.objectFit = "contain";
+    aspectRatio.value = '1.4';
+    //conect();
+    }
+
   };
   
 
