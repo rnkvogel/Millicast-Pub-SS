@@ -437,7 +437,14 @@ let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator
 //let isEdge = /Edge/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 let constraints =  { 
     video: {
-    mediaSource: "screen"
+    mediaSource: "screen",
+      mandatory: {
+chromeMediaSource: 'screen',
+maxWidth: screen.width,
+maxHeight: screen.height,
+minFrameRate: 1,
+maxFrameRate: 5
+}
   },
   audio: false
 };  
