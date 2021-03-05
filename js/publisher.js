@@ -24,7 +24,7 @@ function startScreen() {
   //screenshare
    let tokenVal=document.getElementById("tokenTxt").value;
    let accountVal = document.getElementById("viewTxt").value;
-   let stream1 = "https://rnkvogel.github.io/Millicast2020/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal;
+   let stream1 = "https://rnkvogel.github.io/Millicast2020/screen/?id=" + streamName +"&at=" + accountVal +"&tn="+ tokenVal + "&cod=" +videoCodec + "&bit=" + videoBitrateSS;
    window.open(stream1 , "MsgWindow", "width=700,height=600, left:0");
     //window.open(stream1 , "_parent", "width=900,height=600, left:0;");  
     //document.getElementById('screenshare').src = player2;
@@ -159,6 +159,13 @@ function closeForm() {
   function getCodec() {
   videoCodec = document.getElementById("codec").value;
   alert("Your Video Codec "  + videoCodec);
+
+  };
+  //set bit rate for screen share
+  let videoBitrateSS = 4000;
+  function getBitrateSS() {
+  videoBitrateSS = document.getElementById("bitrateSS").value;
+  alert("Your Video Bitrate "  + videoBitrateSS + "  BPS");
 
   };
 
