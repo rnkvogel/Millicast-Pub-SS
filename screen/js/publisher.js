@@ -20,6 +20,8 @@
   let accountId = params.get('at');
   let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
+  let videoBitrate = "2000";
+
   
 function stopScreen() {
   //screenshare
@@ -246,7 +248,8 @@ function stopCapture(evt) {
 
             let answer = new RTCSessionDescription(
               { type: 'answer',
-                sdp:  remotesdp + "a=x-google-flag:conference\r\n"
+                sdp:  remotesdp + "a=x-google-flag:conference\r\n",
+                sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrate +"\r\n"
 
               }
             );
