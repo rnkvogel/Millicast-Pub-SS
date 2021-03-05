@@ -426,3 +426,12 @@ width: 42px;
         -webkit-border-radius: 10px;
         margin:10px
   }
+    #bitrateSS {
+        background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+  }
