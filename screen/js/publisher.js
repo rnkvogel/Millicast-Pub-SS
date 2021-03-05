@@ -440,8 +440,8 @@ let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator
 let constraints =  { 
     video: {
     mediaSource: "screen",
-    width:{ideal:3840},
-    hieght:{ideal:2160},
+    width: { min: 640, ideal: 1920 },
+    height: { min: 400, ideal: 1080 },
 
   },
   audio: false
