@@ -20,7 +20,7 @@
   let accountId = params.get('at');
   let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
-  let videoBitrate = 2500;
+   let videoBitrateSS = params.get('bit')
 
   
 function stopScreen() {
@@ -35,7 +35,7 @@ function stopScreen() {
   }
 
 
-  const codec = 'h264'; //'vp8', 'vp9'
+  const codec = params.get('cod'); 
   const stereo = true;//true for stereo
   const useSimulcast = false;//true for simulcast. (chrome only)
   
@@ -249,7 +249,7 @@ function stopCapture(evt) {
             let answer = new RTCSessionDescription(
               { type: 'answer',
                 sdp:  remotesdp + "a=x-google-flag:conference\r\n",
-                sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrate +"\r\n"
+                sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrateSS +"\r\n"
 
               }
             );
