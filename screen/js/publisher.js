@@ -20,7 +20,7 @@
   let accountId = params.get('at');
   let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
-   let videoBitrateSS = params.get('bit')
+  let videoBitrateSS = params.get('bit');
 
   
 function stopScreen() {
