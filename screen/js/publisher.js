@@ -435,13 +435,15 @@ try {
   }
 
 function getMedia() {
+const screenW = screen.width;
+const screenH = screen.hight  
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 //let isEdge = /Edge/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 let constraints =  { 
     video: {
     mediaSource: "screen",
-    width: { min: 640, ideal: 1920 },
-    height: { min: 400, ideal: 1080 },
+    width: { ideal: 1920 },
+    height: { ideal: 1080 },
 
   },
   audio: false
