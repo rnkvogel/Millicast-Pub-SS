@@ -20,7 +20,7 @@
   let accountId = params.get('at');
   let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020//player/?accountId=" + accountId + "&streamName=" + streamName + "SS";
-  let videoBitrate = "2000";
+  let videoBitrate = "2500";
 
   
 function stopScreen() {
@@ -446,7 +446,7 @@ let constraints =  {
     mediaSource: "screen",
     width: screenW ,
     height: screenH,
-    frameRate:5,  
+    frameRate:60,  
 
   },
   audio: false
