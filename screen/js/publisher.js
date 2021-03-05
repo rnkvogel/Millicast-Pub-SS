@@ -6,6 +6,8 @@
   const turnUrl = 'https://turn.millicast.com/webrtc/_turn';
   const startElem = document.getElementById("startSS");
   const stopElem = document.getElementById("stopSS");
+  const screenW = screen.width;
+  const screenH = screen.hight;
 
 
   //Millicast required info.
@@ -437,7 +439,9 @@ let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator
 //let isEdge = /Edge/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 let constraints =  { 
     video: {
-    mediaSource: "screen"
+    mediaSource: "screen",
+    width:{ideal:screenW},
+    hieght:{ideal:screeH},
 
   },
   audio: false
