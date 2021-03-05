@@ -443,7 +443,7 @@ let constraints =  {
     mediaSource: "screen",
     width: screenW ,
     height: screenH,
-    fps:5,  
+    frameRate:5,  
 
   },
   audio: false
