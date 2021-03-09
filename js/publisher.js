@@ -516,9 +516,9 @@ function getMedia() {
     minAspectRatio: aspect }
     },
     minWidth: 640,
-    maxWidth: 1920,
+    maxWidth: 3640,
     minHeight: 360,
-    mHeight: 1080,
+    mHeight: 2180,
     minFrameRate: 10,
     maxFrameRate: videoFps,
     };
