@@ -44,7 +44,21 @@
   //player.play(); 
   }
 }
-
+switch(jsonMsg.type){
+      let sdp = jsonMsg.data.sdp;
+      //adjust for av1
+      if(sdp.indexOf('AV1') > -1){
+      sdp = sdp.replace("AV1","AV1X");
+      console.log('replace av1 sdp\n', sdp);  
+      }
+     resolve(sdp);
+     //resolve(jsonMsg.data.sdp);
+     break;
+     case 'event';
+     default:
+     //
+     break;
+}
 function connect() {
     reconn = false;
     if (!url) {
