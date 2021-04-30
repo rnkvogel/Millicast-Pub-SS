@@ -44,6 +44,7 @@
   //player.play(); 
   }
 }
+/*
 switch(jsonMsg.type){
       let sdp = jsonMsg.data.sdp;
       //adjust for av1
@@ -59,6 +60,7 @@ switch(jsonMsg.type){
      //
      break;
 }
+*/
 function connect() {
     reconn = false;
     if (!url) {
