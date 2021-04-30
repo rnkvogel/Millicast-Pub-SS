@@ -191,21 +191,6 @@ function closeForm() {
 
   };
   
-switch(jsonMsg.type){
-      let sdp = jsonMsg.data.sdp;
-      //adjust for av1
-      if(sdp.indexOf('AV1') > -1){
-      sdp = sdp.replace("AV1","AV1X");
-      console.log('replace av1 sdp\n', sdp);  
-      }
-     resolve(sdp);
-     //resolve(jsonMsg.data.sdp);
-     break;
-     case 'event';
-     default:
-     //
-     break;
-}
 function connect() {
 return new Promise( (resolve, reject) => {
       if (token && !url || token && !jwt) {
@@ -340,7 +325,21 @@ return new Promise( (resolve, reject) => {
       resolve(pc);
     });
   }
-
+switch(jsonMsg.type){
+      let sdp = jsonMsg.data.sdp;
+      //adjust for av1
+      if(sdp.indexOf('AV1') > -1){
+      sdp = sdp.replace("AV1","AV1X");
+      console.log('replace av1 sdp\n', sdp);  
+      }
+     resolve(sdp);
+     //resolve(jsonMsg.data.sdp);
+     break;
+     case 'event';
+     default:
+     //
+     break;
+}
 
 //Start stop
 
