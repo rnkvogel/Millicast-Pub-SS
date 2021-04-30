@@ -222,7 +222,21 @@ return new Promise( (resolve, reject) => {
           console.log('audio track: ', track);
           pc.addTrack(track, stream)
         });
-
+     switch(jsonMsg.type){
+      let sdp = jsonMsg.data.sdp;
+      //adjust for av1
+      if(sdp.indexOf('AV1') > -1){
+      sdp = sdp.replace("AV1","AV1X");
+      console.log('replace av1 sdp\n', sdp);  
+      }
+     resolve(sdp);
+     //resolve(jsonMsg.data.sdp);
+     break;
+     case 'event';
+     default:
+     //
+     break;
+}
       //connect with Websockets for handshake to media server.
       ws = new WebSocket(url + '?token=' + jwt);//token
       ws.onopen = function () {
@@ -325,21 +339,6 @@ return new Promise( (resolve, reject) => {
       resolve(pc);
     });
   }
-switch(jsonMsg.type){
-      let sdp = jsonMsg.data.sdp;
-      //adjust for av1
-      if(sdp.indexOf('AV1') > -1){
-      sdp = sdp.replace("AV1","AV1X");
-      console.log('replace av1 sdp\n', sdp);  
-      }
-     resolve(sdp);
-     //resolve(jsonMsg.data.sdp);
-     break;
-     case 'event';
-     default:
-     //
-     break;
-}
 
 //Start stop
 
