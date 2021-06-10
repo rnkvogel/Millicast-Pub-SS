@@ -249,7 +249,7 @@ return new Promise( (resolve, reject) => {
     }
   }
   
-    */
+  
   switch(jsonMsg.type){
       let sdp = jsonMsg.data.sdp;
       //adjust for av1
@@ -265,6 +265,7 @@ return new Promise( (resolve, reject) => {
      //
      break;
 }
+ */
       //connect with Websockets for handshake to media server.
       ws = new WebSocket(url + '?token=' + jwt);//token
       ws.onopen = function () {
