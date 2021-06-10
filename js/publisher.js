@@ -222,23 +222,32 @@ return new Promise( (resolve, reject) => {
           console.log('audio track: ', track);
           pc.addTrack(track, stream)
         });
-  /*
-     switch(jsonMsg.type){
-      let sdp = jsonMsg.data.sdp;
-      //adjust for av1
-      if(sdp.indexOf('AV1') > -1){
-      sdp = sdp.replace("AV1","AV1X");
-      console.log('replace av1 sdp\n', sdp);  
-      }
-     resolve(sdp);
-     //resolve(jsonMsg.data.sdp);
-     break;
-     case 'event';
-     default:
-     //
-     break;
-}
-*/
+  
+ async subscribe (sdp) {
+    logger.info('Starting subscription to streamName: ', this.streamName)
+    logger.debug('Subcription local description: ', sdp)
+
+    // Signaling server only recognizes 'AV1' and not 'AV1X'
+    sdp = SdpParser.adaptCodecName(sdp, 'AV1X', VideoCodec.AV1)
+
+    const data = { sdp, streamId: this.streamName }
+
+    try {
+      await this.connect()
+      logger.info('Sending view command')
+      const result = await this.transactionManager.cmd('view', data)
+
+      // Signaling server returns 'AV1' instead of 'AV1X'
+      result.sdp = SdpParser.adaptCodecName(result.sdp, VideoCodec.AV1, 'AV1X')
+
+      logger.info('Command sent, subscriberId: ', result.subscriberId)
+      logger.debug('Command result: ', result)
+      return result.sdp
+    } catch (e) {
+      logger.error('Error sending view command, error: ', e)
+      throw e
+    }
+  }
       //connect with Websockets for handshake to media server.
       ws = new WebSocket(url + '?token=' + jwt);//token
       ws.onopen = function () {
