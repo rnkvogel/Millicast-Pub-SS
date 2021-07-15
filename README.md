@@ -39,4 +39,5 @@ Constraint options.
 Fix screen share view options.
 Player updates need to include dynamic change when Screen Share is active..
 
+If you would like to hear audio only use audio.html on the viewer link created.
 
