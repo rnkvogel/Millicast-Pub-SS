@@ -475,7 +475,7 @@ function connect() {
   }
 
     //connect();
-    // get a list of Xirsys ice servers.
+    // get a list of ice servers.
     getICEServers()
       .then(list => {
         iceServers = list;
