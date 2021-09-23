@@ -17,7 +17,7 @@
   let streamName = Math.random().toString(36).substring(7);  //name can be generated on each load
   let screenName = streamName + "SS";
   let accountId = params.get('viewTxt');
-  let player1 = "hhttps://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
+  let player1 = "https://rnkvogel.github.io/Millicast2020/player/?accountId=" + accountId + "&streamName=" + streamName ;   
   let player2 = "https://rnkvogel.github.io/Millicast2020/player/screenshare.html?accountId=" + accountId + "&streamName=" + streamName + "SS";
   
 function startScreen() {
