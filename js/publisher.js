@@ -342,14 +342,11 @@ return new Promise( (resolve, reject) => {
             let answer = new RTCSessionDescription(
               { type: 'answer',
                 sdp:  remotesdp + "a=x-google-flag:conference\r\n",
-                sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrate +"\r\n"
+                sdp: data.sdp + "a=MID:video\r\nb=TIAS:" + videoBitrate +"\r\n"
   
               }
             );
    
-             sdp = sdp.replace('nb=AS:', 'nb=TIAS:')
-             logger.debug('SDP updated for firefox: ', sdp)
-             }
 
             pc.setRemoteDescription(answer)
               //brodcast begin
