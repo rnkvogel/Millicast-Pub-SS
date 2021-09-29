@@ -338,17 +338,16 @@ return new Promise( (resolve, reject) => {
               }).join('\n');
               console.log('trimed a=extmap-allow-mixed - sdp \n',remotesdp);
             }
-             if (sdp.indexOf('b=AS:') > -1 && browserData.isFirefox()) {
-             logger.info('Updating SDP for firefox browser')
-             sdp = sdp.replace('b=AS:', 'b=TIAS:')
-             logger.debug('SDP updated for firefox: ', sdp)
-             }
-
+     
             let answer = new RTCSessionDescription(
               { type: 'answer',
                 sdp:  remotesdp + "a=x-google-flag:conference\r\n",
                 sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrate +"\r\n"
-
+              if (sdp.indexOf('nb=AS:') > -1 && browserData.isFirefox()) {
+             logger.info('Updating SDP for firefox browser')
+             sdp = sdp.replace('nb=AS:', 'nb=TIAS:')
+             logger.debug('SDP updated for firefox: ', sdp)
+             }
               }
             );
 
