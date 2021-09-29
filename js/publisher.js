@@ -345,8 +345,13 @@ return new Promise( (resolve, reject) => {
                 sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrate +"\r\n"
               }
             );
-               if (sdp.indexOf('nb=AS:') > -1 && browserData.isFirefox()) {
-             logger.info('Updating SDP for firefox browser')
+            if browserData.isFirefox()) {
+               let answer = new RTCSessionDescription(
+              { type: 'answer',
+                sdp:  remotesdp + "a=x-google-flag:conference\r\n",
+                sdp: data.sdp + "a=MID:video\r\nb=TIAS:" + videoBitrate +"\r\n"
+              }
+            ); 
              sdp = sdp.replace('nb=AS:', 'nb=TIAS:')
              logger.debug('SDP updated for firefox: ', sdp)
              }
