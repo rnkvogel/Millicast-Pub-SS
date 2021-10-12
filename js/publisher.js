@@ -137,9 +137,6 @@ function openForm() {
   document.getElementById("cogForm").style.display = "block";
 }
 
-function closeForm() {
-  document.getElementById("cogForm").style.display = "none";
-}
    //set bit rate
   let videoBitrate = 0;
   function getBitrate() {
@@ -162,7 +159,7 @@ function closeForm() {
 
   };
   //set bit rate for screen share
-  let videoBitrateSS = 4000;
+  let videoBitrateSS = 3000;
   function getBitrateSS() {
   videoBitrateSS = document.getElementById("bitrateSS").value;
   alert("Your Video Bitrate "  + videoBitrateSS + "  BPS");
@@ -346,7 +343,17 @@ return new Promise( (resolve, reject) => {
   
               }
             );
-   
+            
+            if (navigator.userAgent.indexOf("Firefox") != -1) {
+            
+             answer = new RTCSessionDescription(
+           
+            { type: 'answer', sdp:  remotesdp + "a=x-google-flag:conference\r\n",
+             sdp: data.sdp + "a=MID:video\r\nb=TIAS:" + document.getElementById("bitrate").value * 800 +"\r\n"            }
+
+           );
+          }
+
 
             pc.setRemoteDescription(answer)
               //brodcast begin
@@ -538,6 +545,9 @@ function getMedia() {
           googHighpassFilter: true,
         }
       }
+     if (navigator.userAgent.indexOf("Firefox") != -1) {
+      a=true;
+      }
 
     let aspect = aspectRatio;
      let vgaConstraints = {
@@ -549,22 +559,16 @@ function getMedia() {
      }
      };
 
-    let constraints =
-    {
-    audio: a,  
-    video: true,
-    video: {
-    mandatory: {
-    minAspectRatio: aspect }
-    },
-    minWidth: 640,
-    maxWidth: 3640,
-    minHeight: 360,
-    mHeight: 2180,
-    minFrameRate: 10,
-    maxFrameRate: videoFps,
+    const intConstraints = {
+     audio: a,
+     video: {
+    width: {min: 640, ideal: 1280, max: 1920},
+    height: {min: 480, ideal: 720, max: 1080},
+    frameRate: { min: videoFps , max: 60 },
+    }
     };
-       navigator.mediaDevices.getUserMedia(constraints)
+
+       navigator.mediaDevices.getUserMedia(intConstraints)
         .then(str => {
           resolve(str);
         }).catch(err => {
@@ -810,10 +814,17 @@ if (feed) {
 //TRACKS NEED TO BE UPDATED
 const audioSource = audioInputSelect.value;
 const videoSource = videoSelect.value;
+const track = feed.getVideoTracks()[0];
 const constraints = {
-    audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
-  };
+  audio: {deviceId: audioSource ? {exact: audioSource} : undefined },
+  video: {deviceId: videoSource ? {exact: videoSource} : undefined ,
+  width: {min: 640, ideal: 1280, max: 1920},
+  height: {min: 480, ideal: 720, max: 1080},
+  frameRate: { min: videoFps, max: 60 },
+  advanced: [ {width: vWidth, height:vHeight}, {aspectRatio: aspect.value} ]
+}
+};
+
 navigator.mediaDevices.getUserMedia(constraints).then(gotStream)
 .then(function(gotdevices) {
 
@@ -848,8 +859,12 @@ videoElement.srcObject = feed;
 .catch(e => {
 alert('getUserMedia Error: ', e);
   });
-
 }
+function closeForm() {
+document.getElementById("cogForm").style.display = "none";
+stream.replaceTrack;
+}
+
 if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     ready();
   } else {
