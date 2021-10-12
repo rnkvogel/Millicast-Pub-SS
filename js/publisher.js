@@ -187,6 +187,32 @@ function openForm() {
     }
 
   };
+const vWidth = document.querySelector('#vWidth input');
+const vHeight = document.querySelector('#vHeight input');
+//set Size
+let videoSize = null;
+function getSize() {
+videoSize = document.getElementById("size").value;
+alert("Your Video HW "  + videoSize);
+if (videoSize=="1920x1080"){
+let vWidth = 1920;
+let vHeight = 1080;
+}
+if (videoSize=="1280x720"){
+let vWidth = 1280;
+let vHeight = 720;
+}
+if (videoSize=="640x480"){
+let vWidth = 640;
+let vHeight = 480;
+}
+if (videoSize=="320x240"){
+let vWidth = 320;
+let vHeight = 240;
+}
+
+};
+
   
 function connect() {
 return new Promise( (resolve, reject) => {
