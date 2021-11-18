@@ -106,6 +106,26 @@ padding-bottom: 5%;
         -webkit-border-radius: 10px;
         margin:10px
     }
+#aspect16{
+         background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+
+#aspect4 {
+        background-color: #313630;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+
   .slider {
   color: red;
     -webkit-appearance: none;
