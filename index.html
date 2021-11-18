@@ -66,18 +66,16 @@
     <option value="ax1" id="codecText">AV1</option>
  </select>
 
- <label for="Aspect Ratio"><b>Aspect Ratio</b></label>
-  <select name="aspectRatio" class="selectAspect-content" onchange="getAspect()" id="aspect" >
-    <option value="1.7777777778" id="aspectText">16:9</option>
-    <option value="1.4" id="aspectText">4:3</option>
- </select>
- 
-  <label for="videoBitrateScreen"><b>Video BitrateSS</b></label>
+ <label for="videoBitrateScreen"><b>Video BitrateSS</b></label>
   <select name="videoBitrate" class="selectBitrate-content" onchange="getBitrateSS()" id="bitrateSS" >
     <option value="3000" id="bitrateText">Screen 3 Mpbs </option>
     <option value="2000" id="bitrateText">Screen 2.0 MBPS</option>
     <option value="1000" id="bitrateText">Screen 1.0 MPBS</option>
   </select>
+ 
+ <button type="button" class="Aspect 16" value="1.7" onclick="getAspect16()" id="aspect16">16:9</button>
+ <button type="button" class="Aspect 4" value="1.4" onclick="getAspect4()" id="aspect4">4:3</button>
+
   
     <!-- <button type="submit" class="btn">Save</button>  -->
     <button type="button" class="btn cancel" onclick="closeForm()" id="cancel">Close</button>
