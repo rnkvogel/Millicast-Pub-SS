@@ -1,7 +1,6 @@
 ///URL to millicast API
 
   const videoElem = document.getElementById("video");
-
   const apiPath = 'https://director.millicast.com/api/director/publish';
   const turnUrl = 'https://turn.millicast.com/webrtc/_turn';
   const startElem = document.getElementById("startSS");
@@ -43,9 +42,7 @@ function stopScreen() {
   let ws;//live websocket
   let isBroadcasting = false;
 
-  // You can add them to the url as a prameter
-  // ex:( /publisher.html?token=8e16b5fff53e3&streamName=feed1&accountId=L7c3p0 ).
-  //media stream object from local user mic and camera.
+   //media stream object from local media dosplay
   let stream;
   //Ice Servers:
   let iceServers = [];
@@ -55,32 +52,48 @@ function stopScreen() {
     {form: 'streamTxt', param: 'streamName'},
     {form: 'viewTxt', param: 'accountId'}
   ];
-//Start Screen Share
-
-
-function stopCapture(evt) {
-  let tracks = videoElem.srcObject.getTracks();
-  tracks.forEach(track => track.stop());
-  videoElem.srcObject = null;
+//Let Start Screen Capture
+if (adapter.browserDetails.browser == 'firefox') {
+  adapter.browserShim.shimGetDisplayMedia(window, 'screen');
 }
-//start stop publishing
-  function startBroadcast() {
-    //if missing params, assume the form has them.
-    if (!token || !streamName || !accountId) {
-      getFormParams();
-    }
-    // get a list of Xirsys ice servers.
-    getICEServers()
-      .then(list => {
-        iceServers = list;
-        //ready to connect.
-        connect();
-      })
-      .catch(e => {
-        alert('Error: ', e);
-        connect();//proceed with no (TURN)
-      });
+/*
+function handleSuccess(stream) {
+  startButton.disabled = true;
+    video.srcObject = stream;
+
+  // demonstrates how to detect that the user has stopped
+  // sharing the screen via the browser UI.
+  stream.getVideoTracks()[0].addEventListener('ended', () => {
+    errorMsg('The user has ended sharing the screen');
+    startSS.disabled = false;
+  });
+}
+
+function handleError(error) {
+  errorMsg(`getDisplayMedia error: ${error.name}`, error);
+}
+
+function errorMsg(msg, error) {
+  const errorElement = document.querySelector('#errorMsg');
+  errorElement.innerHTML += `<p>${msg}</p>`;
+  if (typeof error !== 'undefined') {
+    console.error(error);
   }
+}
+
+const startButton = document.getElementById('startSS');
+startButton.addEventListener('click', () => {
+  navigator.mediaDevices.getDisplayMedia({video: true})
+      .then(handleSuccess, handleError);
+});
+
+if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
+  startButton.disabled = false;
+} else {
+  errorMsg('getDisplayMedia is not supported');
+}
+*/
+//Start Publishing
  function startBroadcast() {
       if(isBroadcasting) {
      stopBroadcast();
@@ -103,7 +116,9 @@ function stopCapture(evt) {
     });
 
 }
-  //Stop Start
+//Stop Publishing
+
+ //Stop Start
 
   function stopBroadcast(){
     window.close();
@@ -122,7 +137,7 @@ function stopCapture(evt) {
     isBroadcasting = false;
     onBroadcasting();
   }
-
+//IF Chrome Sound Enables
 //Mic on off
   function toggleMic() {
     let b = !stream.getAudioTracks()[0].enabled;
@@ -138,11 +153,10 @@ function stopCapture(evt) {
      btn.style.backgroundColor = "green";   
     }
   }
- 
 
-  function connect() {
-
-    return new Promise( (resolve, reject) => {
+//Connect the Token to Credentials
+function connect() {
+  return new Promise( (resolve, reject) => {
       if (token && !url || token && !jwt) {
         console.log('connect to API - url:', url)
         return updateMillicastAuth()
@@ -173,7 +187,7 @@ function stopCapture(evt) {
           pc.addTrack(track, stream)
         });
 
-      //connect with Websockets for handshake to media server.
+   //connect with Websockets for handshake to media server.
       ws = new WebSocket(url + '?token=' + jwt);//token
       ws.onopen = function () {
         //Connect to our media server via WebRTC
@@ -197,13 +211,12 @@ function stopCapture(evt) {
               .then(() => {
                 console.log('setLocalDescription Success !:', streamName);
                 //set required information for media server.
-                let data = {
-                  name:  streamName,
-                  sdp:   desc.sdp ,
-                  codec: codec//'h264'
-
-                }
-                //create payload
+           let data = {
+           name:  streamName,
+           sdp:   desc.sdp ,
+           codec: codec//'h264'
+}
+         //create payload
                 let payload = {
                   type:    "cmd",
                   transId: Math.random() * 10000,
@@ -220,14 +233,11 @@ function stopCapture(evt) {
           });
           ws.onclose = function (){
           setTimeout(function(){
-          //location.reload();
-          //track.close();
-          }, 10000);
+           }, 10000);
           console.log('ws::closed ');//token
           }
       }
-
-      ws.addEventListener('message', evt => {
+  ws.addEventListener('message', evt => {
         console.log('ws::message', evt);
 
         let msg = JSON.parse(evt.data);
@@ -252,7 +262,7 @@ function stopCapture(evt) {
                 sdp: data.sdp + "a=MID:video\r\nb=AS:" + videoBitrateSS +"\r\n"
 
               }
-            );
+       );
 
             pc.setRemoteDescription(answer)
               //brodcast begin
@@ -275,14 +285,7 @@ function stopCapture(evt) {
       resolve(pc);
     });
   }
-//Start SCreen Share
-  function screenStart(){
-    let btn = document.getElementById('screenSource');
-  // alert("hello");
-
-}
-
-//Start stop
+ //Start stop
 
   function onBroadcasting(){
     let btn = document.getElementById('publishBtn');
@@ -304,93 +307,6 @@ function stopCapture(evt) {
     }
 
 }
-  
-  function setSimulcast(offer) {
-    //support for multiopus
-    ///// temporary patch for now
-    let isChromium = window.chrome;
-    let winNav = window.navigator;
-    let vendorName = winNav.vendor;
-    let agent = winNav.userAgent.toLowerCase();
-    let isOpera = typeof window.opr !== "undefined";
-    let isIEedge = agent.indexOf("edge") > -1;
-    // let isEdgium = agent.indexOf("edg") > -1;
-    let isIOSChrome = agent.match("crios");
-
-    let isChrome = false;
-    if (isIOSChrome) {
-    } else if( isChromium !== null && typeof isChromium !== "undefined" &&
-                vendorName === "Google Inc." && isOpera === false &&
-                isIEedge === false) {/*  && isEdgium === false */
-      // is Google Chrome
-      isChrome = true;
-    }
-try {
-      if(isChrome){
-        //Get sdp
-        let sdp = offer.sdp;
-        //OK, chrome way  +  "a=MID:video\r\nb=AS:" + 2000 +"\r\n",
-        const reg1 = RegExp("m=video.*\?a=ssrc:(\\d*) cname:(.+?)\\r\\n","s");
-     
-        const reg2 = RegExp("m=video.*\?a=ssrc:(\\d*) mslabel:(.+?)\\r\\n","s");
-    
-        const reg3 = RegExp("m=video.*\?a=ssrc:(\\d*) msid:(.+?)\\r\\n","s");
-
-        const reg4 = RegExp("m=video.*\?a=ssrc:(\\d*) label:(.+?)\\r\\n","s");
-  
-        //Get ssrc and cname
-        let res = reg1.exec(sdp);
-        const ssrc = res[1];
-        const cname = res[2];
-        //Get other params
-        const mslabel = reg2.exec(sdp)[2];
-        const msid = reg3.exec(sdp)[2];
-        const label = reg4.exec(sdp)[2];
-        //Add simulcasts ssrcs
-        const num = 2;
-        const ssrcs = [ssrc];
-        for (let i=0;i<num;++i) {
-          //Create new ssrcs
-          const ssrc = 100+i*2;
-          const rtx   = ssrc+1;
-          //Add to ssrc list
-          ssrcs.push(ssrc);
-          //Add sdp stuff  
-          sdp +=  "a=ssrc-group:FID " + ssrc + " " + rtx + "\r\n" +
-            "a=ssrc:" + ssrc + " cname:" + cname + "\r\n" +
-            "a=ssrc:" + ssrc + " msid:" + msid + "\r\n" +
-            "a=ssrc:" + ssrc + " mslabel:" + mslabel + "\r\n" +
-            "a=ssrc:" + ssrc + " label:" + label + "\r\n" +
-            "a=ssrc:" + rtx + " cname:" + cname + "\r\n" +
-            "a=ssrc:" + rtx + " msid:" + msid + "\r\n" +
-            "a=ssrc:" + rtx + " mslabel:" + mslabel + "\r\n" +
-            "a=ssrc:" + rtx + " label:" + label + "\r\n";
-            //"a=ssrc:" + "video\r\nb=AS:" + 3000 +"\r\n";
-        }
-        //Conference flag
-        sdp += "a=x-google-flag:conference\r\n";
-        //Add SIM group
-        sdp += "a=ssrc-group:SIM " + ssrcs.join(" ") + "\r\n";
-        //Update sdp in offer without the rid stuff
-        //sdp: data.sdp + "a=MID:video\r\nb=AS:" + 3000 +"\r\n";
-        offer.sdp = sdp;
-        //Add RID equivalent to send it to the sfu
-        sdp += "a=simulcast:send a;b;c\r\n";
-        sdp += "a=rid:c send ssrc="+ssrcs[0]+"\r\n";
-        sdp += "a=rid:b send ssrc="+ssrcs[1]+"\r\n";
-        sdp += "a=rid:a send ssrc="+ssrcs[2]+"\r\n";
-        //Set it back
-        // offer.sdp = sdp;
-        console.log('* simulcast set!');
-      }
-    } catch(e) {
-      console.error(e);
-      console.log(ssrcs);
-    }
-    
-    return offer.sdp;
-  }
-
   // Gets ice servers.
   function getICEServers() {
     return new Promise((resolve, reject) => {
@@ -436,43 +352,6 @@ try {
     })
   }
 
-function getMedia() {
-const screenW = screen.width;
-const screenH = screen.hight  
-let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-//let isEdge = /Edge/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-let constraints =  { 
-    video: {
-    mediaSource: "screen",
-    width: screenW ,
-    height: screenH,
-    frameRate:30,  
-
-  },
-  audio: false
-};  
-let screenMedia = navigator.mediaDevices.getUserMedia(constraints);
-
-if (isChrome) { 
-screenMedia =  navigator.mediaDevices.getDisplayMedia(constraints);
-} 
-
-return new Promise((resolve, reject) => {
- //getmedia constraints needs to chec
- 
- screenMedia
-        .then(str => {
-          resolve(str);
-
-        }).catch(err => {
-        console.error('Could not get Media: ', err);
-        reject(err);
-      })
-
-    });
-
-  }
-
   // gets server path and auth token.
   function updateMillicastAuth() {
     console.log('updateMillicastAuth for:', streamName);
@@ -503,7 +382,6 @@ return new Promise((resolve, reject) => {
       xhr.send(JSON.stringify({streamName: streamName}));
     });
   }
-
   // Display the path to the viewer and passes our id to it.
   function showViewURL() {
     //if no viewer stream id is provided, path to viewer not shown.
@@ -591,8 +469,6 @@ return new Promise((resolve, reject) => {
     console.log('getFormParams - token:', token, ', streamName:', streamName, ', accountId:', accountId);
   }
 
-  //START
-
   function ready() {
     console.log('Millicast token: ', token);
     //sets required data to broadcast and view.
@@ -609,12 +485,37 @@ return new Promise((resolve, reject) => {
         }
       };
     }
-
-//Get users camera and mic
-
+//Here we need the screen share video 
 //Get Screen
-    getMedia()
-      .then(str => {
+function handleSuccess(stream) {
+  startButton.disabled = true;
+    video.srcObject = stream;
+
+  // demonstrates how to detect that the user has stopped
+  // sharing the screen via the browser UI.
+  stream.getVideoTracks()[0].addEventListener('ended', () => {
+    errorMsg('The user has ended sharing the screen');
+    startSS.disabled = false;
+  });
+}
+
+function handleError(error) {
+  errorMsg(`getDisplayMedia error: ${error.name}`, error);
+}
+
+function errorMsg(msg, error) {
+  const errorElement = document.querySelector('#errorMsg');
+  errorElement.innerHTML += `<p>${msg}</p>`;
+  if (typeof error !== 'undefined') {
+    console.error(error);
+  }
+}
+
+const startButton = document.getElementById('startSS');
+startButton.addEventListener('click', () => {
+  navigator.mediaDevices.getDisplayMedia({video: true})  //gets screen
+    //  .then(handleSuccess, handleError);
+ .then(str => {
         stream     = str;
         //set cam feed to video window so user can see self.
         let vidWin = document.getElementsByTagName('video')[0];
@@ -623,14 +524,19 @@ return new Promise((resolve, reject) => {
           connect();
         }
       })
-      .catch(e => {
-        alert('getUserMedia Error: ', e);
-      });
-  }
+});
+
+if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
+  startButton.disabled = false;
+} else {
+  errorMsg('getDisplayMedia is not supported');
+}
+}
+
 if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     ready();
   } else {
     document.addEventListener('DOMContentLoaded', ready);
-  }
+}
 
 
