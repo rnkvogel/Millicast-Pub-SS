@@ -45,6 +45,24 @@ select {
 #publishBtn:focus{
 background-color:red;
   }
+background-color:red;
+  }
+#startSS {
+        position: fixed;
+        position: top;
+        position: center;
+        background-color: #2ea00b;
+        color: #ffffff;
+        background-position: absolute;
+        padding: 15px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
+    }
+#startSS:focus{
+background-color:red;
+  }
 
 #videoSrc{
   position:left;
@@ -132,15 +150,17 @@ padding-bottom: 5%;
 /* Top left text iframe*/
 .top-left {
 position: fixed;
-top: 5%;
+top: 5px;
 left:30%;
+
 }
 
 /* Top right text */
 .top-right {
 position:fixed;
-top: 8px;
+top: 5px;
 right: 75%;
+
 }
 
 /* Bottom right text */
