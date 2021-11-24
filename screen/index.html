@@ -5,8 +5,7 @@
 <meta charset="utf-8">
  <meta name="viewport" content="width=device-width initial-scale=1, shrink-to-fit=no, maximum-scale=10.0,user-scalable=1">
   <link rel="stylesheet" href="css/publisher.css">
-  <script src="js/publisher.js"></script>
-  <script src="js/adapter-latest.js"></script>
+
 
 </head>
 <body>
@@ -22,7 +21,9 @@
   <!--<image src="images/Cam_.png"/>  -->
     <select id="videoSource" class="select1-content"></select>
   </div>
-  <input type="button" id="publishBtn" class="top-left"  value="START SCREEN" />
+    <input type="button" id="startSS"  class="top-right" value="Select Screen"/>
+  <input type="button" id="publishBtn" class="top-left"  value="Publishing" />
+
   <!-- <input type="button" id="micMuteBtn" class="inline-b" onclick="toggleMic()"  value="MUTE MIC" />
   <div class="select2">  -->
   <!-- <image src="images/Mic3_.png"/>--><select id="audioSource"  class="select2-content"></select>
@@ -42,6 +43,8 @@
     <div class="ml-10 mt-10">
     <div class="ml-10 mt-10">
 </body>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="js/publisher.js"></script>
   <script src="../js/usercount.js"></script>
 </html>
 
