@@ -5,8 +5,8 @@
   let subToken = params.get('token');// SubscribingToken - placed here for ease of testing, should come from secure location. (php/nodejs)
   let lang = document.getElementById('subtitles');
   console.log('Millicast Viewer Stream: ', streamName);
-  let player1 = "https://rnkvogel.github.io/Millicast2020/player/main.html?accountId=" + accountId + "&streamName=" + streamName ;   
-  let player2 = "https://rnkvogel.github.io/Millicast2020/player/screenshare.html?accountId=" + accountId + "&streamName=" + screenShare;
+  let player1 = "https://rnkvogel.github.io/Millicast-Pub-SS/player/main.html?accountId=" + accountId + "&streamName=" + streamName ;   
+  let player2 = "https://rnkvogel.github.io/Millicast-Pub-SS/player/screenshare.html?accountId=" + accountId + "&streamName=" + screenShare;
   //let vidFrm = document.getElementByTagName('iframe').src = player2;
  
   //Millicast required info.
