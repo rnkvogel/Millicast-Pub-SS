@@ -27,11 +27,11 @@ You can quickly test your token here.
 
 DEMO
 
-https://rnkvogel.github.io/Millicast2020/
+https://rnkvogel.github.io/Millicast-Pub-SS/
 
 Enter your token and account id in the text fields on top..
 You will need to update the JS files URL
-REPLACE to Your Domain:  https://rnkvogel.github.io/Millicast2020/ 
+REPLACE to Your Domain:  https://rnkvogel.github.io/Millicast-Pub-SS/ 
 
 TO DO:
 Will be updating build to include.
