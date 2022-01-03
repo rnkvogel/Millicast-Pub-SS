@@ -1,97 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Millicast Realtime Broadcaster</title>
+<title>Millicast Realtime Broadcaster< Player and  Screen Share/title>
 <meta charset="utf-8">
  <meta name="viewport" content="width=device-width initial-scale=1, shrink-to-fit=no, maximum-scale=10.0,user-scalable=1">
-<link rel="stylesheet" href="css/publisher.css">
-<script src="js/publisher.js"></script>
-<script src="js/adapter-latest.js"></script>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link rel="stylesheet" href="css/publisherN.css">
 
 </head>
 <body>
   <div class="container">
-
   <div id="userCntView"><p id="count">viewing: 00</p></div>
-
   <video id="localVideo" src=""  autoplay muted playsinline ></video>
 
-  <div class="bottom-left">
-
-  <div class="selectSS"> 
-  <image src="images/screenshare.png" onclick="startScreen()" value="Screen Capture"/>
-  </div>
-  <div class="select1">
-  <image src="images/Cam.png"/>
-    <select id="videoSource" class="select1-content"></select>
-  </div>
-  <input type="button" id="publishBtn" class="inline-b"  value=" GO LIVE " />
-  <input type="button" id="micMuteBtn" class="inline-b" onclick="toggleMic()"  value="MUTE" />
-  <div class="select2">
-  <image src="images/mic.png"/><select id="audioSource"  class="select2-content"></select>
+  <div class="vidpub">
+    <div class="cam-select">
+    <image src="images/videob.jpg"/>
+    <select id="videoSource" class="cam-select-content"></select>
     </div>
-  <div class="select3">
-   <image src="images/Speaker.png"/><select id="audioOutput"  class="select3-content"></select>
+    <div class="mic-select">
+    <image src="images/micb.png"/><select id="audioSource"  class="mic-select-content"></select>
+   </div>
+    <div class="screen-select"> 
+    <image src="images/screensharew.png" onclick="startScreen()" value="Screen Capture"/>
+    </div>
   </div>
-  <div class="select4">
-  <image src="images/player.png"/>
-  <a id="viewerUrl" href="" target="_blank" class="select4-content"  ></a>
-  </div> 
-</div>  
+  <div class="publishing">
+  <input type="button" id="publishBtn" class="live"  value="GO LIVE " />
+  <input type="button" id="micMuteBtn" class="mic" onclick="toggleMic()"  value="MUTE" />
+  </div>
+  <div class="vidshare">
+   <div class="share-select">
+    <image src="images/shareb.jpg"/>
+   <a id="viewerUrl"   href="" target="_blank" class="share-select-content" ></a>
+  </div>
+  <div class="spk-select">
+    <image src="images/speakerb.png"/>
+    <select id="audioOutput" class="spk-select-content"></select>
+   </div>
+</div>
+
+
+
 <input type="button" class="open-button" onclick="openForm()">
 </input>
-<div class="form-popup" id="cogForm"> 
-<form action="" class="form-container" > 
-<label for="videoBitrate"><b>Video Bitrate</b></label>
-  <select name="videoBitrate" class="selectBitrate-content" onchange="getBitrate()" id="bitrate" >
-    <option value="0" id="bitrateText">Bitrate Unlimited</option>
-    <option value="1500" id="bitrateText">1.5 MBPS</option>
+<div class="form-popup" id="cogForm">
+<form action="" class="form-container" >
+<label for="videoBitrate" class="videoBitrate"><b>Video Bitrate</b></label>
+  <select name="videoBitrate" class="bitrate-select-content" onchange="getBitrate()" id="bitrate" >
+    <option value="0" id="bitrateText">Bitrate</option>
+    <option value="3500" id="bitrateText">3.5 MBPS</option>
+    <option value="2000" id="bitrateText">2 MBPS</option>
+    <option value="1500"id="bitrateText">1.5 MBPS</option>
     <option value="1000" id="bitrateText">1.0 MPBS</option>
     <option value="500" id="bitrateText">500 BPS</option>
   </select>
 
 <label for="Frame Rate"><b>Video FPS</b></label>
-  <select name="videoFPS" class="selectFPS-content" onchange="getFps()" id="framerate" >
-    <option value="24" id="fpsText">24 fps</option>
-    <option value="20" id="fpsText">15 fps</option>
-    <option value="30" id="bitrateText">30 fps</option>
-    <option value="60" id="bitrateText">60 fps</option>
-  </select> 
+  <select name="videoFPS" class="fps-select-content" onchange="getFps()" id="framerate" >
+    <option value="24" id="fpsText">24fps</option>
+    <option value="15" id="fpsText">15 fps</option>
+    <option value="29" id="fpsText">29.97 fps</option>
+    <option value="30" id="fpsText">30 fps</option>
+    <option value="60" id="fpsText">60 fps</option>
+  </select>
 
 <label for="codec"><b>Codec</b></label>
-  <select name="videoCodec" class="selectCodec-content" onchange="getCodec()" id="codec" >
+  <select name="videoCodec" class="codec-select-content" onchange="getCodec()" id="codec" >
     <option value="h264" id="codecText">H264</option>
     <option value="vp8" id="codecText">VP8</option>
     <option value="vp9" id="codecText">VP9</option>
-    <option value="ax1" id="codecText">AV1</option>
+  <!--   <option value="ax1" id="codecText">AV1</option>  -->
  </select>
 
- <label for="videoBitrateScreen"><b>Video BitrateSS</b></label>
-  <select name="videoBitrate" class="selectBitrate-content" onchange="getBitrateSS()" id="bitrateSS" >
-    <option value="3000" id="bitrateText">Screen 3 Mpbs </option>
-    <option value="2000" id="bitrateText">Screen 2.0 MBPS</option>
-    <option value="1000" id="bitrateText">Screen 1.0 MPBS</option>
-  </select>
- 
+
+
+<label for="size"><b>Input Size</b></label>
+  <select name="videoSize" class="size-select-content" onchange="getSize()" id="size" >
+    <option value="0" id="sizeText">Camera Height</option>
+    <option value="240" id="sizeText">240p</option>
+    <option value="360" id="sizeText">360p</option>
+    <option value="480" id="sizeText">480p</option>
+    <option value="540" id="sizeText">540p</option>
+    <option value="640" id="sizeText">640p</option>
+    <option value="720" id="sizeText">720p</option>
+    <option value="999" id="sizeText">1080p</option>
+ </select>
+
+ <!-- <label for="Aspect Ratio"><b>Aspect Ratio</b></label>
+  <select name="aspectRatio" class="selectAspect-content" onchange="getAspect()" id="aspect" >
+    <option value="1.7" id="aspectText">16:9</option>
+    <option value="1.4" id="aspectText">4:3</option>
+ </select> -->
  <button type="button" class="Aspect 16" value="1.7" onclick="getAspect16()" id="aspect16">16:9</button>
  <button type="button" class="Aspect 4" value="1.4" onclick="getAspect4()" id="aspect4">4:3</button>
 
-  
     <!-- <button type="submit" class="btn">Save</button>  -->
     <button type="button" class="btn cancel" onclick="closeForm()" id="cancel">Close</button>
   </form>
-
-</div>   
+</div>
 
   <div id="form" class="account-data">
-        </><input id="tokenTxt" class="base-input" type="text" value="" placeholder="Token" />
-        <input id="viewTxt" class="base-input" type="text" value="" placeholder="Account Id"/>
+        </><input id="tokenTxt" class="base-input" type="hidden" value="" placeholder="Token" />
+        <input id="viewTxt" class="base-input" type="hidden" value="" placeholder="Account Id"/>
        <input id="streamTxt" class="base-input ml-10 mr-10" type="hidden" value="" placeholder="Stream Name"/>
-       </div>
+   </div>
     <div class="ml-10 mt-10">
     <div class="ml-10 mt-10">
 </body>
-  <script src="js/usercount.js"></script>
+<script src="js/publisher.js" async></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/usercount.js"></script>
 </html>
-
 
