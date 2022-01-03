@@ -148,9 +148,14 @@ function openForm() {
   let videoFps = 24;
   function getFps() {
   videoFps = document.getElementById("framerate").value;
+  stream.getTracks().forEach(track => {
+  track.applyConstraints({frameRate:videoFps});
+  console.log(track ,  "FPS Updated"); 
+ })
   alert("Your Video Framerate"  + videoFps + "FPS");
 
   };
+
   //set codec
   let videoCodec = "h264";
   function getCodec() {
@@ -159,60 +164,24 @@ function openForm() {
 
   };
   //set bit rate for screen share
-  let videoBitrateSS = 3000;
+  let videoBitrateSS = 2500;
   function getBitrateSS() {
   videoBitrateSS = document.getElementById("bitrateSS").value;
   alert("Your Video Bitrate "  + videoBitrateSS + "  BPS");
 
-  };
-/*
- //set Aspect
-  let aspectRatio = "1.7777";
-  
-  function getAspect() {
-  aspectRatio = document.getElementById("aspect").value;
-  alert("Your Aspect "  + aspectRatio );
-  selObj = document.getElementById('localVideo');
-  //selObj.value = "cover" ? 'contain' : 'cover';
+  }
+  let vHeight= 480;
+  function getSize() {
+  vHeight=document.getElementById("size").value;
+  stream.getTracks().forEach(track => {
+  track.applyConstraints({height:vHeight});
+  console.log(track ,  "New Hieght");
 
-    if (aspectRatio.value = "1.7777"){
-    selObj.style.objectFit = "cover"; 
-    aspectRatio.value= '1.7';
-
-    }  
-    if(aspectRatio.value ='1.4'){
-    selObj.style.objectFit = "contain";
-    aspectRatio.value = '1.4';
-    //conect();
-    }
-
-  };
-*/
-const vWidth = document.querySelector('#vWidth input');
-const vHeight = document.querySelector('#vHeight input');
-//set Size
-let videoSize = null;
-function getSize() {
-videoSize = document.getElementById("size").value;
-alert("Your Video HW "  + videoSize);
-if (videoSize=="1920x1080"){
-let vWidth = 1920;
-let vHeight = 1080;
-}
-if (videoSize=="1280x720"){
-let vWidth = 1280;
-let vHeight = 720;
-}
-if (videoSize=="640x480"){
-let vWidth = 640;
-let vHeight = 480;
-}
-if (videoSize=="320x240"){
-let vWidth = 320;
-let vHeight = 240;
-}
+})
+ alert("Ideal height is " + vHeight);
 
 };
+
 
   
 function connect() {
@@ -320,13 +289,7 @@ return new Promise( (resolve, reject) => {
             }).join('\n');
             console.log('trimed a=extmap-allow-mixed - sdp \n',remotesdp);
           }
-       //    if (navigator.userAgent.indexOf("Firefox") != -1) {
-          
-        //  remotesdp.replace('nb=AS:','nb=TIAS:');
 
-        //  }
-
-    
           //Chrome 94 bit rate is 1/5
  
            let answer = new RTCSessionDescription(
@@ -683,15 +646,16 @@ let a = true;
    }
 //intial on Load Cameraconstraints
 const intConstraints = {
-     audio: a,
-     video: {
+    audio: a,
+    video: {
     width: {min: 640, ideal: 1280, max: 1920},
     height: {min: 480, ideal: 720, max: 1080},
     frameRate: { min: videoFps , max: 60 },
- //  advanced: [ {width: vWidth, height:vHeight}, {aspectRatio: 1.43} ]
+    advanced: [ {aspectRatio: 1.777778} ]
 
 }
 };
+
 
   navigator.mediaDevices.getUserMedia(intConstraints)
    .then(str  => {
@@ -839,19 +803,20 @@ if (feed) {
 //const aspectRatio = aspect.value;
 const audioSource = audioInputSelect.value;
 const videoSource = videoSelect.value;
-const track = feed.getVideoTracks()[0];
-const newConstraints = {
+const track = stream.getVideoTracks()[0];
+const constraints = {
   audio: {deviceId: audioSource ? {exact: audioSource} : undefined },
   video: {deviceId: videoSource ? {exact: videoSource} : undefined ,
-  width: {min: 640, ideal: vWidth, max: 3840},
-  height: {min: 480, ideal: vHeight, max: 2160},
+  width: { ideal:9999},
+  height: { ideal:vHeight},
   frameRate: { min: videoFps, max: 60 },
-  advanced: [ {width: vWidth, height:vHeight},{aspectRatio: aspect16.value} ],
+  advanced: [{aspectRatio: aspect16.value}],
 
 }
 
 };
-navigator.mediaDevices.getUserMedia(newConstraints).then(gotStream)
+
+navigator.mediaDevices.getUserMedia(constraints).then(gotStream)
 .then(function(gotdevices) {
 
 videoFps.onchange = updateSource;  
@@ -866,7 +831,6 @@ videoSelect.onchange = updateSource;
 });
 
 
-
 if ((MediaStreamTrack.readyState == "live") || (isBroadcasting == true)) {
   stream.getTracks().forEach(track => {
   //ws.close();
@@ -876,21 +840,15 @@ if ((MediaStreamTrack.readyState == "live") || (isBroadcasting == true)) {
 })
 
   console.log(track, feed ,"Track Updated LIVE");
-//ws.close();
-
 
 }
 
 //console.log(   feed ,"Track Updated");
 });
 
-
 //end updating sources 
 }
-
-updateSource();
-//set cam feed to video window so user can see self.
-//let videoElement = document.getElementsByTagName('video')[0];
+videoSelect.onchange = updateSource;
 if (videoElement) {
 videoElement.srcObject = feed;
 }
@@ -903,6 +861,9 @@ alert('getUserMedia Error: ', e);
 
 
 function getAspect16() { 
+
+//selObj = document.getElementById('localVideo');
+//selObj.value = "cover" ? 'contain' : 'cover';
 
   if(aspect16.value = '1.7'){
   stream.getTracks().forEach(track => {
@@ -933,6 +894,7 @@ if (document.attachEvent ? document.readyState === "complete" : document.readySt
 } else {
   document.addEventListener('DOMContentLoaded', ready);
 }
+
 
 
 
