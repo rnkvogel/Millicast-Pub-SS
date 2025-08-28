@@ -1,5 +1,5 @@
 # Millicast Publisher and ScreenShare
-Please use this updates sample
+Please use this updated sample
 https://github.com/rnkvogel/Dolby.io-Advanced-Publisher
 
 
