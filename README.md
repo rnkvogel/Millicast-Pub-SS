@@ -1,5 +1,6 @@
 # Millicast Publisher and ScreenShare
-Includes
+Please use this updates sample
+https://github.com/rnkvogel/Dolby.io-Advanced-Publisher
 
 
 1.Camera change while broadcasting.
